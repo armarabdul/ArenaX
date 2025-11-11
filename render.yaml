@@ -1,0 +1,24 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: arenax-backend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
+    healthCheckPath: /api/leaderboard
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Set these manually in Render dashboard:
+      # - MONGODB_URI (from MongoDB Atlas)
+      # - JWT_SECRET (generate a strong random string)
+      # - CLIENT_URL (set after frontend is deployed)
+
+# Note: Frontend should be deployed as a Static Site in Render dashboard
+# Static sites are configured differently and may not work with render.yaml
+# Deploy frontend manually through Render dashboard as Static Site
+

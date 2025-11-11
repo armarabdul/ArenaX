@@ -1,0 +1,29 @@
+{
+  "name": "arenax-event-manager",
+  "version": "1.0.0",
+  "description": "ArenaX Event Manager - Full-stack web application for multi-game competition",
+  "main": "server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "setup-env": "node setup-env.js",
+    "create-admins": "node create-admins.js",
+    "fix-game-index": "node backend/scripts/drop-gameid-index.js",
+    "generate-secret": "node generate-secret.js"
+  },
+  "keywords": [
+    "arenax",
+    "event-manager",
+    "gaming"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}
