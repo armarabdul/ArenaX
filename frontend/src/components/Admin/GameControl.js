@@ -23,6 +23,7 @@ const GameControl = () => {
     maxPoints: 3,
     type: 'single'
   });
+  const [playerSearch, setPlayerSearch] = useState('');
 
   useEffect(() => {
     fetchGames();
@@ -38,6 +39,15 @@ const GameControl = () => {
 
     return () => socket.disconnect();
   }, []);
+
+  const filteredPlayers = players.filter((p) => {
+    if (!playerSearch) return true;
+    const q = playerSearch.toLowerCase();
+    return (
+      p.playerId.toLowerCase().includes(q) ||
+      p.name.toLowerCase().includes(q)
+    );
+  });
 
   const fetchGames = async () => {
     try {
@@ -411,8 +421,25 @@ const GameControl = () => {
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Select Player{selectedGame.type === 'faceoff' ? 's' : ''} ({selectedGame.type === 'faceoff' ? '2 required' : '1 required'})
                 </label>
+                <div className="mb-3 flex items-center gap-3">
+                  <input
+                    type="text"
+                    value={playerSearch}
+                    onChange={(e) => setPlayerSearch(e.target.value)}
+                    placeholder="Search by Player ID or Name..."
+                    className="w-full max-w-md px-4 py-2 bg-darkBg border border-neonBlue rounded-md text-white focus:outline-none focus:glow-blue"
+                  />
+                  {playerSearch && (
+                    <button
+                      onClick={() => setPlayerSearch('')}
+                      className="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded-md"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 max-h-48 overflow-y-auto">
-                  {players.map((player) => {
+                  {filteredPlayers.map((player) => {
                     const attempts = getPlayerGameAttempts(player.playerId, selectedGame.gameId);
                     const canSelect = attempts.canPlay && player.tokens >= selectedGame.entryCost;
                     

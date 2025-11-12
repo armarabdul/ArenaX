@@ -55,20 +55,24 @@ const PublicAbout = () => {
               <div>
                 <h3 className="text-lg font-medium text-electricPurple mb-2">Faculty Coordinators</h3>
                 <p className="text-gray-300">
-                  [Faculty Coordinator Names]
+                  Abdul Muqeet
                 </p>
                 <p className="text-sm text-gray-400 mt-1">
-                  Contact: [Email/Phone]
+                  Contact: +91 9964941418
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-electricPurple mb-2">Student Coordinators</h3>
-                <p className="text-gray-300">
-                  [Student Coordinator Names]
-                </p>
-                <p className="text-sm text-gray-400 mt-1">
-                  Contact: [Email/Phone]
-                </p>
+                <div className="text-gray-300 space-y-2">
+                  <div>
+                    <p>Abubaker</p>
+                    <p className="text-sm text-gray-400">Contact: +91 8088206128</p>
+                  </div>
+                  <div>
+                    <p>Abdul Qadir Arham</p>
+                    <p className="text-sm text-gray-400">Contact: +91 8105221036</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -87,48 +91,12 @@ const PublicAbout = () => {
               Have questions or need assistance? Reach out to our team!
             </p>
             <div className="space-y-2 text-gray-400">
-              <p><strong className="text-neonBlue">Email:</strong> [organizer@arenax.com]</p>
-              <p><strong className="text-neonBlue">Phone:</strong> [Contact Number]</p>
-              <p><strong className="text-neonBlue">Location:</strong> [Event Venue]</p>
+              <p><strong className="text-neonBlue">Email:</strong> abubakerkadli82@gmail.com</p>
+              <p><strong className="text-neonBlue">Phone:</strong> +91 8088206128</p>
+              <p><strong className="text-neonBlue">Location:</strong> L12 and L13</p>
             </div>
           </motion.div>
 
-          {/* Tech Stack */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 }}
-            className="bg-darkCard border-2 border-neonBlue rounded-lg p-6"
-          >
-            <h2 className="text-2xl font-orbitron font-bold text-neonBlue mb-4">
-              Built With
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-              <div className="text-gray-300">
-                <strong className="text-neonBlue">Frontend:</strong>
-                <ul className="mt-1 space-y-1 text-gray-400">
-                  <li>• React.js</li>
-                  <li>• Tailwind CSS</li>
-                  <li>• Framer Motion</li>
-                </ul>
-              </div>
-              <div className="text-gray-300">
-                <strong className="text-neonBlue">Backend:</strong>
-                <ul className="mt-1 space-y-1 text-gray-400">
-                  <li>• Node.js</li>
-                  <li>• Express.js</li>
-                  <li>• MongoDB</li>
-                </ul>
-              </div>
-              <div className="text-gray-300">
-                <strong className="text-neonBlue">Real-time:</strong>
-                <ul className="mt-1 space-y-1 text-gray-400">
-                  <li>• Socket.io</li>
-                  <li>• WebSocket</li>
-                </ul>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </div>

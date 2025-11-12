@@ -13,10 +13,45 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get player by ID
+// Public: list players (limited fields)
+router.get('/public', async (req, res) => {
+  try {
+    const q = (req.query.q || '').toString().trim().toLowerCase();
+    let playersQuery = Player.find().select('playerId name department tokens points gamesPlayed createdAt');
+    const players = await playersQuery.sort({ points: -1, createdAt: -1 });
+
+    const filtered = q
+      ? players.filter((p) =>
+          p.playerId.toLowerCase().includes(q) ||
+          p.name.toLowerCase().includes(q)
+        )
+      : players;
+
+    res.json(filtered);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get player by ID (admin-only)
 router.get('/:id', auth, async (req, res) => {
   try {
     const player = await Player.findOne({ playerId: req.params.id });
+    if (!player) {
+      return res.status(404).json({ message: 'Player not found' });
+    }
+    res.json(player);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Public: get player by ID (limited fields)
+router.get('/public/:id', async (req, res) => {
+  try {
+    const player = await Player.findOne({ playerId: req.params.id }).select(
+      'playerId name department tokens points gamesPlayed opponentsFaced gameHistory createdAt'
+    );
     if (!player) {
       return res.status(404).json({ message: 'Player not found' });
     }

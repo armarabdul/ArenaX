@@ -10,6 +10,7 @@ import PublicRules from './components/Public/PublicRules';
 import PublicLeaderboard from './components/Public/PublicLeaderboard';
 import PublicAbout from './components/Public/PublicAbout';
 import Navbar from './components/Shared/Navbar';
+import PublicPlayerProfile from './components/Public/PublicPlayerProfile';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -29,6 +30,7 @@ function App() {
             <Route path="/rules" element={<PublicRules />} />
             <Route path="/leaderboard" element={<PublicLeaderboard />} />
             <Route path="/about" element={<PublicAbout />} />
+            <Route path="/player/:playerId" element={<PublicPlayerProfile />} />
             
             {/* Admin Routes */}
             <Route path="/adminlogin" element={<Login />} />
